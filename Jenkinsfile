@@ -29,14 +29,14 @@ pipeline {
             steps {
                 script {
                     // DOCKER_IMAGE 변수는 이미 글로벌 스코프에 선언되어 있음
-                    sh "docker build -t ${DOCKER_IMAGE} ."
+                    sh "docker build -t ${env.DOCKER_IMAGE} ."
                 }
             }
         }
         stage('Push Docker Image') {
             steps {
                 withDockerRegistry([credentialsId: 'harbor_access_credentials', url: 'https://team2-registry.ci.lion.nyhhs.com:8443']) {
-                    sh "docker push ${DOCKER_IMAGE}"
+                    sh "docker push ${env.DOCKER_IMAGE}"
                 }
             }
         }
@@ -44,7 +44,7 @@ pipeline {
             steps {
                 script {
                     // DOCKER_IMAGE 변수 사용
-                    sh "kubectl set image deployment/team2-backend team2-backend=${DOCKER_IMAGE}"
+                    sh "kubectl set image deployment/team2-backend team2-backend=${env.DOCKER_IMAGE}"
                 }
             }
         }
