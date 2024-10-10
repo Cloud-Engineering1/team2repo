@@ -51,7 +51,7 @@ const corsOptions = {
   methods: ["GET", "POST", "OPTIONS"],
   credentials: true,
 };
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
 
 // DB 초기화 완료 후 서버 가동
 setupDB()
