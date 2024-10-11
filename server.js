@@ -21,8 +21,8 @@ const fs = require("fs");
 
 // SSL 인증서와 키 파일 읽기
 const options = {
-  key: fs.readFileSync("server.key"),
-  cert: fs.readFileSync("server.cert"),
+  key: fs.readFileSync("/app/keys/server.key"),
+  cert: fs.readFileSync("/app/keys/server.cert"),
 };
 
 const app = express();
